@@ -1,0 +1,26 @@
+DECLARE
+    n NUMBER := &n;
+    a NUMBER := 0;
+    b NUMBER := 1;
+    c NUMBER;
+    i NUMBER := 2;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Fibonacci Series up to ' || n || ' terms:');
+    
+    IF n >= 1 THEN
+        DBMS_OUTPUT.PUT_LINE(a);
+    END IF;
+
+    IF n >= 2 THEN
+        DBMS_OUTPUT.PUT_LINE(b);
+    END IF;
+
+    WHILE i < n LOOP
+        c := a + b;
+        DBMS_OUTPUT.PUT_LINE(c);
+        a := b;
+        b := c;
+        i := i + 1;
+    END LOOP;
+END;
+/
