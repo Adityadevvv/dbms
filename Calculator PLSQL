@@ -1,0 +1,37 @@
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('------ SIMPLE CALCULATOR ------');
+    DBMS_OUTPUT.PUT_LINE('1. Addition');
+    DBMS_OUTPUT.PUT_LINE('2. Subtraction');
+    DBMS_OUTPUT.PUT_LINE('3. Multiplication');
+    DBMS_OUTPUT.PUT_LINE('4. Division');
+    DBMS_OUTPUT.PUT_LINE('-------------------------------');
+END;
+/
+
+DECLARE
+    a NUMBER := &a;
+    b NUMBER := &b;
+    choice NUMBER := &choice;
+    result NUMBER;
+BEGIN
+    IF choice = 1 THEN
+        result := a + b;
+        DBMS_OUTPUT.PUT_LINE('Result (Addition) = ' || result);
+    ELSIF choice = 2 THEN
+        result := a - b;
+        DBMS_OUTPUT.PUT_LINE('Result (Subtraction) = ' || result);
+    ELSIF choice = 3 THEN
+        result := a * b;
+        DBMS_OUTPUT.PUT_LINE('Result (Multiplication) = ' || result);
+    ELSIF choice = 4 THEN
+        IF b != 0 THEN
+            result := a / b;
+            DBMS_OUTPUT.PUT_LINE('Result (Division) = ' || result);
+        ELSE
+            DBMS_OUTPUT.PUT_LINE('Error: Division by zero not possible.');
+        END IF;
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Invalid choice! Please enter 1, 2, 3, or 4.');
+    END IF;
+END;
+/
