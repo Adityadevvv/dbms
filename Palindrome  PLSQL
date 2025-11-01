@@ -1,0 +1,21 @@
+DECLARE
+    num NUMBER := &num;
+    temp NUMBER;
+    rev NUMBER := 0;
+    rem NUMBER;
+BEGIN
+    temp := num;
+
+    WHILE temp > 0 LOOP
+        rem := MOD(temp, 10);
+        rev := (rev * 10) + rem;
+        temp := FLOOR(temp / 10);
+    END LOOP;
+
+    IF num = rev THEN
+        DBMS_OUTPUT.PUT_LINE(num || ' is a palindrome number.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(num || ' is not a palindrome number.');
+    END IF;
+END;
+/
