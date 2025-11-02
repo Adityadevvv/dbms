@@ -19,7 +19,7 @@ BEGIN
     temp := num;
     WHILE temp > 0 LOOP
         rem := MOD(temp, 10);
-        sum := sum + POWER(rem, digits);
+        sum := sum + (digits * digits * digits);
         temp := FLOOR(temp / 10);
     END LOOP;
 
