@@ -4,7 +4,7 @@ DECLARE
     num NUMBER := &num;
     temp NUMBER;
     rem NUMBER;
-    sum NUMBER := 0; 
+    vsum NUMBER := 0;  -- Changed from sum to vsum
     digits NUMBER := 0;
     n NUMBER;
 BEGIN
@@ -14,6 +14,8 @@ BEGIN
     END IF;
     temp := num;
     n := temp;
+
+    -- SECTION 1: Count the number of digits
     IF n = 0 THEN 
         digits := 1; 
     ELSE
@@ -22,20 +24,18 @@ BEGIN
             n := FLOOR(n / 10);
         END LOOP;
     END IF;
-
+    
     temp := num;
     WHILE temp > 0 LOOP
         rem := MOD(temp, 10);
-        
-        sum := sum + POWER(rem, digits);
-        
+        vsum := vsum + POWER(rem, digits); -- Changed variable name
         temp := FLOOR(temp / 10);
     END LOOP;
 
-    IF sum = num THEN
+    IF vsum = num THEN -- Changed variable name
         DBMS_OUTPUT.PUT_LINE(num || ' is an Armstrong number (Base: ' || digits || ').');
     ELSE
-        DBMS_OUTPUT.PUT_LINE(num || ' is not an Armstrong number. Calculated sum: ' || sum);
+        DBMS_OUTPUT.PUT_LINE(num || ' is not an Armstrong number. Calculated sum: ' || vsum); -- Changed variable name
     END IF;
 END;
 /
