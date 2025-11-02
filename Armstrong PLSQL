@@ -1,32 +1,41 @@
+SET SERVEROUTPUT ON;
+
 DECLARE
     num NUMBER := &num;
     temp NUMBER;
     rem NUMBER;
-    sum NUMBER := 0;
+    sum NUMBER := 0; 
     digits NUMBER := 0;
     n NUMBER;
 BEGIN
+    IF num IS NULL OR num < 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Please enter a positive integer.');
+        RETURN;
+    END IF;
     temp := num;
-
-    -- Count number of digits
     n := temp;
-    WHILE n > 0 LOOP
-        digits := digits + 1;
-        n := FLOOR(n / 10);
-    END LOOP;
+    IF n = 0 THEN 
+        digits := 1; 
+    ELSE
+        WHILE n > 0 LOOP
+            digits := digits + 1;
+            n := FLOOR(n / 10);
+        END LOOP;
+    END IF;
 
-    -- Calculate sum of each digit raised to the power of digits
     temp := num;
     WHILE temp > 0 LOOP
         rem := MOD(temp, 10);
-        sum := sum + (digits * digits * digits);
+        
+        sum := sum + POWER(rem, digits);
+        
         temp := FLOOR(temp / 10);
     END LOOP;
 
     IF sum = num THEN
-        DBMS_OUTPUT.PUT_LINE(num || ' is an Armstrong number.');
+        DBMS_OUTPUT.PUT_LINE(num || ' is an Armstrong number (Base: ' || digits || ').');
     ELSE
-        DBMS_OUTPUT.PUT_LINE(num || ' is not an Armstrong number.');
+        DBMS_OUTPUT.PUT_LINE(num || ' is not an Armstrong number. Calculated sum: ' || sum);
     END IF;
 END;
 /
