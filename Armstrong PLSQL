@@ -8,10 +8,7 @@ DECLARE
     digits NUMBER := 0;
     n NUMBER;
 BEGIN
-    IF num IS NULL OR num < 0 THEN
-        DBMS_OUTPUT.PUT_LINE('Please enter a positive integer.');
-        RETURN;
-    END IF;
+   
     temp := num;
     n := temp;
 
